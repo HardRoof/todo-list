@@ -1,0 +1,21 @@
+@import url(./normalize.css);
+
+:root {
+  font-size: 62.5%; /* To turn 1rem into 10px */
+  --green-color: #44b88e;
+  --light-black-color: #393939;
+  --shadow: 1px 2px 4px rgb(0 0 0 / 51%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.6rem; /* To turn 1rem into 10px */
+}
