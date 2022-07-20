@@ -11,7 +11,7 @@
   box-sizing: border-box;
 }
 
-p {
+p, h1 {
   margin: 0;
 }
 
@@ -19,3 +19,58 @@ body {
   font-family: 'Times New Roman', Times, serif;
   font-size: 1.6rem; /* To turn 1rem into 10px */
 }
+
+.container {
+  min-height: 100vh;
+  /* display: grid;
+  grid-template-rows: fit-content(10%) auto; */
+}
+
+header {
+  display: flex;
+  padding: 2rem 3rem;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: var(--shadow);
+  background-color: var(--green-color);
+}
+
+.left {
+  display: flex;
+}
+
+.top img, [type="image"] {
+  width: min(7vmin,50px);
+  transition: 0s 0.3s;
+  cursor: pointer;
+}
+
+.left .logo {
+  width: min(10vmin,60px);
+}
+
+.left div:last-child {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  position: relative;
+}
+
+[for="searchID"] {
+  position: absolute;
+  left: 8px;
+}
+
+#searchID {
+  width: 100%;
+  background-color: #ffffff3b;
+  border: none;
+  outline: none;
+  padding: 5px 0 5px 3.2rem;
+}
+
+.right {
+  display: flex;
+  gap: min(3vw, 2rem);
+}
+
