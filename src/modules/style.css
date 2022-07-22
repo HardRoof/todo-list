@@ -3,16 +3,39 @@
 :root {
   font-size: 62.5%; /* To turn 1rem into 10px */
   --green-color: #44b88e;
+  --red-color: rgb(255 0 0 / 75%);
   --light-black-color: #393939;
   --shadow: 1px 2px 4px rgb(0 0 0 / 51%);
 }
 
-* {
+* :not(.modal-content){
   box-sizing: border-box;
 }
 
 p, h1 {
   margin: 0;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin: 0;
+}
+
+li {
+  cursor: pointer;
+  opacity: 0.95;
+  transition: all 0.15s;
+}
+
+li:hover {
+  text-decoration: underline;
+  transform: scale(1.05);
+  opacity: 1;
+  text-underline-offset: 2px;
 }
 
 body {
@@ -26,9 +49,9 @@ body {
   grid-template-rows: fit-content(10%) auto; */
 }
 
-header {
+.container > header {
   display: flex;
-  padding: 2rem 3rem;
+  padding: 1rem 3rem;
   justify-content: space-between;
   align-items: center;
   box-shadow: var(--shadow);
@@ -40,13 +63,13 @@ header {
 }
 
 .top img, [type="image"] {
-  width: min(7vmin,50px);
+  width: min(5vmin,40px);
   transition: 0s 0.3s;
   cursor: pointer;
 }
 
 .left .logo {
-  width: min(10vmin,60px);
+  width: min(7vmin,55px);
 }
 
 .left div:last-child {
@@ -62,15 +85,157 @@ header {
 }
 
 #searchID {
-  width: 100%;
   background-color: #ffffff3b;
+  color: white;
   border: none;
   outline: none;
   padding: 5px 0 5px 3.2rem;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+
+#searchID::placeholder {
+  opacity: .9;
+  color: rgb(255, 255, 255);
 }
 
 .right {
   display: flex;
-  gap: min(3vw, 2rem);
+  gap: min(3vw, 1.5rem);
 }
 
+/* Modal box Form */
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.48); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 85rem;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+.modal-header {
+  position: relative;
+  grid-column: 1/3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--green-color);
+  padding: 1rem 2rem 1rem;
+}
+
+/* The Close modal button */
+.close {
+  color: var(--light-black-color);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+input {
+  box-sizing: border-box
+}
+
+#submitForm {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem,1fr));
+  gap: 2rem 1.5rem;
+  padding: 2rem;
+}
+
+#submitForm > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#submitForm .btns {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+#submitForm > div:nth-child(2) {
+  grid-area: 2/1/5/2;
+}
+
+#description {
+  resize: vertical;
+  min-height: 70px;
+  height: 100%;
+  max-height: 22rem;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+
+#submitForm input, #submitForm select, form textarea {
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-weight: 400;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.modal-options {
+  padding: 2rem;
+  background-color: #eee;
+}
+
+.btns > button {
+  border-radius: 12rem;
+  cursor: pointer;
+  color: var(--green-color);
+  border: solid 3px;
+  border-color: var(--green-color);
+  white-space: nowrap;
+  background-color: rgb(255 255 255 / 3%);
+  padding: 6px 16px;
+}
+
+.btns > .resetButton {
+  color: var(--red-color);
+  border-color: var(--red-color);
+}
+
+.btns > button:hover {
+  color: white;
+  background-color: var(--green-color);
+  border-color: var(--green-color);
+  transform: scale(1.05);
+  box-shadow: rgb(0 0 0 / 10%) 0px 10px 15px -3px, rgb(0 0 0 / 5%) 0px 4px 6px -2px;
+}
+
+.btns > .resetButton:hover {
+  background-color: var(--red-color);
+  border-color: var(--red-color);
+}
