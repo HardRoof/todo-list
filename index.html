@@ -5,9 +5,95 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>The todo list</title>
-		<!-- <link rel="shortcut icon" type="image/jpg" href=""> -->
+		<link rel="shortcut icon" type="image/jpg" href="./images/to-do-list-13180.svg">
 	</head>
 	<body>
-	
+		<div class="container">
+			<header>
+				<div class="top left">
+					<img src="./images/to-do-list-13180.svg" alt="Logo" class="logo">
+					<div>
+						<label for="searchID">🔍</label>
+						<input type="search" id="searchID" name="search" placeholder="Search" autocomplete="off">
+					</div>
+				</div>
+				<nav class="top right">
+					<input type="image" src="./images/green-add-button-12023.svg" id="imageButton">
+					<img src="./images/user-3297.svg" alt="Profile Picture">
+				</nav>
+			</header>
+			<main>
+				<nav class="side-bar">
+					<ul>
+						<li><img src="./images/inbox.png" alt="Inbox" title="Inbox" height="24px"> <span>Inbox</span></li>
+						<li><img src="./images/calendar.png" alt="Calender" title="Calender"> <span>Calender</span></li>
+						<li><img src="./images/animation-outline.png" alt="Projects" title="Projects" height="24px"> <span>Projects</span></li>
+						<li><img src="./images/note-text-outline.png" alt="Notes" title="Notes" height="24px"> <span>Notes</span></li>
+					</ul>
+			</nav>
+			<section id="LibContainer"></section>
+			</main>
+						<!-- The Modal -->
+			<div id="myModal" class="modal">
+				<!-- Modal content -->
+				<div class="modal-content">
+					<header class="modal-header">
+						<p>Create a new...</p>
+						<span class="close">&times;</span>
+					</header>
+					<div class="modal-options">
+						<ul>
+							<li>Task</li>
+							<li>Note</li>
+						</ul>
+					</div>
+					<form action="" method="post" id="submitForm" class="formClass">
+						<div>
+							<label for="title">Title</label>
+							<input type="text" id="title" required>
+						</div>
+						<div>
+							<label for="description">Description</label>
+							<textarea id="description" autocomplete="off" spellcheck="true" required></textarea>
+						</div>
+						<div>
+							<label for="dueDate">Due Date</label>
+							<input type="date" id="dueDate" required>
+						</div>
+						<div>
+							<label for="project">Project</label>
+							<select name="project" id="project" required>
+								<option value="input">Input</option>
+							</select>
+						</div>
+						<div>
+							<label for="priority">Priority</label>
+							<select name="priority" id="priority" required>
+								<option value="low">Low</option>
+								<option value="medium">Medium</option>
+								<option value="high">High</option>
+							</select>
+						</div>
+							<div class="btns">
+							<button class="formButton" type="submit" form="submitForm">Add task</button>
+							<button type="reset" class="resetButton">Clear</button>		
+						</div>
+					</form>
+					<form id="noteForm">
+						<div>
+							<label for="noteTitle">Title</label>
+							<input id="noteTitle" required type="text">
+						</div>
+						<div>
+							<label for="noteDescription">Description</label>
+							<textarea id="noteDescription" required autocomplete="off" spellcheck="true"></textarea>
+						</div>
+						<div class="btns">
+							<button class="formButton" type="submit" form="noteForm">Add note</button>
+							<button class="resetButton" type="reset">Clear</button></div>
+					</form>
+				</div>
+			</div>
+		</div>
 	<script defer src="main.bundle.js"></script></body>
 </html>
