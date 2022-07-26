@@ -1,5 +1,5 @@
 export function modalBox() {
-  var modal = document.getElementById("myModal");
+  let modal = document.getElementById("myModal");
   document.querySelector('#imageButton')
     .addEventListener('click', () => {
       modal.style.display = "block";
