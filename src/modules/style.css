@@ -70,8 +70,8 @@ body {
 
 .top img, [type="image"] {
   width: min(5vmin,40px);
-  transition: 0s 0.3s;
   cursor: pointer;
+  transition: all 250ms;
 }
 
 .left .logo {
@@ -132,7 +132,7 @@ body {
   width: 80%;
   max-width: 85rem;
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: max(20%, 70px) auto;
 }
 
 .modal-header {
@@ -153,10 +153,17 @@ body {
 }
 
 .close:hover,
-.close:focus {
+.close:focus,
+[type="image"]:hover,
+[type="image"]:focus {
   color: black;
   cursor: pointer;
-  transform: scale(1.2);
+  transform: scale(1.15);
+}
+
+.close:active, 
+[type="image"]:active {
+  transform: scale(1);
 }
 
 input {
@@ -288,3 +295,5 @@ form input, #submitForm select, form textarea {
 .selected {
   font-weight: bold;
 }
+
+
