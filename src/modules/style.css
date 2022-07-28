@@ -202,7 +202,7 @@ input {
   max-height: 22rem;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus:not(.right input), select:focus, textarea:focus {
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
