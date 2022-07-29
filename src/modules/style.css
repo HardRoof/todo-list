@@ -296,4 +296,47 @@ form input, #submitForm select, form textarea {
   font-weight: bold;
 }
 
+#LibContainer {
+  padding: 2rem;
+}
 
+.todo.shell {
+  display: flex;
+  border-radius: 3px;
+  border: solid 1px transparent;
+  border-bottom-color: #f0f0f0;
+  justify-content: space-between;
+  padding: 0.5em 1rem;
+}
+
+.todo.unchecked {
+  cursor: pointer;
+  height: 1.5rem;
+  width: 1.5rem;
+  border-radius: 3px;
+  border: 2px solid var(--green-color);
+  align-self: center;
+}
+
+.checked {
+  background: url(/src/images/check.png), var(--green-color);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+svg {
+  height: 16px;
+  width: 16px;
+}
+
+.flagColor{
+  fill: rgb(64, 115, 214);
+}
+
+.flagColor.yellowFlag{
+  fill: #FAD02C;
+}
+
+.flagColor.redFlag{
+  fill: #E32227;
+}
