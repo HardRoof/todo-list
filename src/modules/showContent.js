@@ -4,11 +4,4 @@ function showContent() {
   document.getElementById("LibContainer").append(clon)
 }
 
-function showCheck(e) {
-  console.log(e.target);
-  if (e.target.classList.contains('unchecked')) {
-    e.target.classList.toggle("checked");
-  }
-}
-
-export {showContent, showCheck}
+export {showContent}
