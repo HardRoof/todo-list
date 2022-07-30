@@ -19,7 +19,7 @@ class ToDoList {
     this.project = project;
     this.priority = priority;
   }
-  fillCard () {
+  assignFlag () {
     toDoTitle[toDoTitle.length-1].textContent = this.title;
     document.getElementsByClassName("todo date")[toDoTitle.length-1].textContent = this.dueDate; 
     
@@ -34,15 +34,13 @@ class ToDoList {
   }
 };
 
-function clearForm(x) {
-  console.log(x)
+function clearForm() {
   title.value = ""
   description.value = ""
   dueDate.value = ""
   project.value = "Input"
   priority.value = "Low"
   document.getElementById("myModal").style.display = "none";
-  x.fillCard()
 }
 
 export {generatesToDoItem, clearForm};
