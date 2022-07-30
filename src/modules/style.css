@@ -152,17 +152,17 @@ body {
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus,
-[type="image"]:hover,
-[type="image"]:focus {
+.close:hover, .close:focus,
+[type="image"]:hover,[type="image"]:focus,
+.trashBinSvg:hover, .trashBinSvg:focus {
   color: black;
   cursor: pointer;
   transform: scale(1.15);
 }
 
 .close:active, 
-[type="image"]:active {
+[type="image"]:active,
+.trashBinSvg:active {
   transform: scale(1);
 }
 
@@ -324,6 +324,15 @@ form input, #submitForm select, form textarea {
   background-size: contain;
 }
 
+.todo.right {
+  gap: min(2.5vw, 1rem);
+  align-items: center;
+}
+
+.todo.date {
+  margin: 0 1rem;
+}
+
 svg {
   height: 16px;
   width: 16px;
@@ -340,3 +349,22 @@ svg {
 .flagColor.redFlag{
   fill: #E32227;
 }
+
+.trashBinSvg {
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.todo.details {
+  padding: 0.4rem 8px;
+  border: 1px solid var(--green-color);
+  border-radius: 3px;
+  font-size: 1rem;
+  color: var(--green-color);
+  font-weight: 700;
+  cursor: pointer;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+}
+
+
