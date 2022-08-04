@@ -71,7 +71,7 @@ body {
 .top img, [type="image"] {
   width: min(5vmin,40px);
   cursor: pointer;
-  transition: all 250ms;
+  transition: all 200ms;
 }
 
 .left .logo {
@@ -363,14 +363,27 @@ svg {
   color: var(--green-color);
   font-weight: 700;
   cursor: pointer;
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
+
+.todo.details:hover {
+  color: rgb(255, 255, 255);
+  background-color: var(--green-color);
+  transform: scale(1.1);
+}
+
+.todo.details:active {
+  transform: scale(1);
+}
+
 
 .detailsContent {
   padding: 1rem 2rem;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s ease-out;
-  background-color: var(--gray-bg-color);
+  background-color: var(--lighter-gray-bg-color);
 }
 
 
