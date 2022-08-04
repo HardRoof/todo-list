@@ -39,20 +39,19 @@ class Model {
     this.toDos[position].completed == false ? this.toDos[position].completed = true : this.toDos[position].completed = false;
   };
 
-  clearForm() {
-    this.getFormElements().title.value = "";
-    this.getFormElements().description.value = "";
-    this.getFormElements().dueDate.value = "";
-    this.getFormElements().project.value = "Input";
-    this.getFormElements().priority.value = "Low";
-    document.getElementById("myModal").style.display = "none";
-  };
-
   removeToDoItem(e) {
-    let id = e.target.parentElement.parentElement.id;
-    // this.toDos = this.toDos.filter(todo => todo.id !== id)
-    let toBeDeleted = this.toDos.findIndex(todo => todo.id == id);
-    this.toDos.splice(toBeDeleted, 1);
+    let id = e.target.parentElement.parentElement.id; 
+    this.toDos = this.toDos.filter(todo => todo.id != id);
+    // let toBeDeleted = this.toDos.findIndex(todo => todo.id == id); // this.toDos.splice(toBeDeleted, 1);
+    };
+
+    clearForm() {
+      this.getFormElements().title.value = "";
+      this.getFormElements().description.value = "";
+      this.getFormElements().dueDate.value = "";
+      this.getFormElements().project.value = "Input";
+      this.getFormElements().priority.value = "Low";
+      document.getElementById("myModal").style.display = "none";
     };
 };
 
@@ -81,7 +80,5 @@ class ToDoList {
     };
   };
 };
-
-//    toDoItem.id = this.toDos.length > 0 ? this.toDos[this.toDos.length - 1].id + 1 : 0
 
 export {Model}
