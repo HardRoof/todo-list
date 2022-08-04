@@ -39,11 +39,6 @@ class Controller {
     this.getForms().formNote.style.display = "flex";
   };
 
-  display() {
-    let array = this.model.toDos;
-    this.view.detailsView.getInputs();
-  };
-
   formAction(e) {
     e.preventDefault();
     this.view.showContent();
@@ -51,7 +46,6 @@ class Controller {
     let toDoItem = this.model.generatesToDoItem(increment);
     toDoItem.assignFlag();
     this.model.addDivID(increment);
-    this.view.detailsView.getInputs(toDoItem);
     this.model.clearForm();
   };
   
