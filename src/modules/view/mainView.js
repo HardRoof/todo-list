@@ -1,5 +1,9 @@
+import detailsView from './detailsView'
+
 class View {
-  constructor() {}
+  constructor() {
+    this.detailsView = detailsView;
+  };
 
   showContent() {
     let temp = document.getElementsByTagName("template")[0];
@@ -26,15 +30,13 @@ class View {
     if (this.getTarget(e).DetailBtn.classList.contains('showingDetails')) this.getTarget(e).DetailBtn.click()
   };
 
-  dynamicDetails(e) {
-    const detailsContainer = document.createElement('div');
-    detailsContainer.classList.add('detailsContent');
-    e.target.classList.toggle("showingDetails"); //To add CSS style when btn is pressed
-
+  dynamicDetails(e, array) {
+    e.target.classList.toggle("showingDetails");
     if (e.target.classList.contains('showingDetails')) {
-      this.getTarget(e).grandParent.insertAdjacentElement("afterend", detailsContainer);
-      this.getTarget(e).collapsedDiv.style.maxHeight = this.getTarget(e).collapsedDiv.scrollHeight + "rem";
-      detailsContainer.textContent = "Lorem";
+      const detailsContainer = this.detailsView.createDetailsDiv(this.getTarget(e).grandParent);
+      this.detailsView.collapse(this.getTarget(e).collapsedDiv);
+      this.detailsView.createContent(detailsContainer);
+      this.detailsView.getInputs(this.getTarget(e).grandParent, array);
     }
     else this.getTarget(e).collapsedDiv.remove();
   };
