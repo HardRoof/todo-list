@@ -377,6 +377,11 @@ svg {
   transform: scale(1);
 }
 
+.todo.details.showingDetails{
+  color: rgb(255, 255, 255);
+  background-color: var(--green-color);
+  box-shadow: var(--shadow);
+}
 
 .detailsContent {
   padding: 1rem 2rem;
