@@ -170,20 +170,20 @@ input {
   box-sizing: border-box
 }
 
-#submitForm {
+#mainForm {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(22rem,1fr));
   gap: 2rem 1.5rem;
   padding: 2rem;
 }
 
-#submitForm > div {
+#mainForm > div {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-#submitForm .btns, #noteForm .btns {
+#mainForm .btns, #noteForm .btns {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-start;
@@ -191,7 +191,7 @@ input {
   align-self: flex-end;
 }
 
-#submitForm > div:nth-child(2) {
+#mainForm > div:nth-child(2) {
   grid-area: 2/1/5/2;
 }
 
@@ -208,7 +208,7 @@ input:focus:not(.right input), select:focus, textarea:focus {
   box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
 }
 
-form input, #submitForm select, form textarea {
+form input, #mainForm select, form textarea {
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
   font-weight: 400;
@@ -324,6 +324,11 @@ form input, #submitForm select, form textarea {
   background-size: contain;
 }
 
+.strikethrough {
+  text-decoration: line-through;
+  color: #8d8d8d;
+}
+
 .todo.right {
   gap: min(2.5vw, 1rem);
   align-items: center;
@@ -363,6 +368,7 @@ svg {
   color: var(--green-color);
   font-weight: 700;
   cursor: pointer;
+  box-shadow: var(--shadow);
   -webkit-transition: all .2s;
   transition: all .2s;
 }
@@ -380,7 +386,7 @@ svg {
 .todo.details.showingDetails{
   color: rgb(255, 255, 255);
   background-color: var(--green-color);
-  box-shadow: var(--shadow);
+  box-shadow: none
 }
 
 .detailsContent {
@@ -389,6 +395,16 @@ svg {
   overflow: hidden;
   transition: max-height 0.5s ease-out;
   background-color: var(--lighter-gray-bg-color);
+  display: grid;
+  row-gap: 1rem;
+}
+
+.detailsContent p:nth-child(3){
+  grid-row: 2/3;
+}
+
+p > span {
+  font-weight: 600;
 }
 
 
