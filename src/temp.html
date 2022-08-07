@@ -25,10 +25,10 @@
 			<main>
 				<nav class="side-bar">
 					<ul>
-						<li><img src="./images/inbox.png" alt="Inbox" title="Inbox" height="24px"> <span>Inbox</span></li>
-						<li><img src="./images/calendar.png" alt="Calender" title="Today"> <span>Today</span></li>
-						<li><img src="./images/animation-outline.png" alt="Projects" title="Projects" height="24px"> <span>Projects</span></li>
-						<li><img src="./images/note-text-outline.png" alt="Notes" title="Notes" height="24px"> <span>Notes</span></li>
+						<li class="menu selected"><img src="./images/inbox.png" alt="Inbox" title="Inbox" height="24px"><span>Inbox</span></li>
+						<li class="menu"><img src="./images/calendar.png" alt="Calender" title="Today"> <span>Today</span></li>
+						<li class="menu"><img src="./images/animation-outline.png" alt="Projects" title="Projects" height="24px"> <span>Projects</span></li>
+						<li class="menu"><img src="./images/note-text-outline.png" alt="Notes" title="Notes" height="24px"> <span>Notes</span></li>
 					</ul>
 			</nav>
 			<section id="LibContainer"></section>
@@ -125,6 +125,10 @@
 			<p><span>Priority: </span></p>
 	</template>
 	<template>
-		<div></div>
+		<div class="noteClass">
+			<p></p>
+			<span class="note close">×</span>
+			<p></p>
+		</div>
 	</template>
 </html>
