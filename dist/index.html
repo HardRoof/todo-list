@@ -25,14 +25,14 @@
 			<main>
 				<nav class="side-bar">
 					<ul>
-						<li><img src="./images/inbox.png" alt="Inbox" title="Inbox" height="24px"> <span>Inbox</span></li>
-						<li><img src="./images/calendar.png" alt="Calender" title="Today"> <span>Today</span></li>
-						<li><img src="./images/animation-outline.png" alt="Projects" title="Projects" height="24px"> <span>Projects</span></li>
-						<li><img src="./images/note-text-outline.png" alt="Notes" title="Notes" height="24px"> <span>Notes</span></li>
+						<li class="menu selected"><img src="./images/inbox.png" alt="Inbox" title="Inbox" height="24px"><span>Inbox</span></li>
+						<li class="menu"><img src="./images/calendar.png" alt="Calender" title="Today"> <span>Today</span></li>
+						<li class="menu"><img src="./images/animation-outline.png" alt="Projects" title="Projects" height="24px"> <span>Projects</span></li>
+						<li class="menu"><img src="./images/note-text-outline.png" alt="Notes" title="Notes" height="24px"> <span>Notes</span></li>
 					</ul>
 			</nav>
-			<section id="LibContainer">
-			</section>
+			<section id="LibContainer"></section>
+			<section id="NoteContainer" style="display: none;"></section>
 			</main>
 						<!-- The Modal -->
 			<div id="myModal" class="modal">
@@ -48,7 +48,7 @@
 							<li>Note</li>
 						</ul>
 					</div>
-					<form action="" method="post" id="submitForm" class="formClass">
+					<form action="" method="post" id="mainForm" class="formClass">
 						<div>
 							<label for="title">Title</label>
 							<input type="text" id="title" >
@@ -76,18 +76,18 @@
 							</select>
 						</div>
 							<div class="btns">
-							<button class="formButton" type="submit" form="submitForm">Add task</button>
+							<button class="formButton" type="submit" form="mainForm">Add task</button>
 							<button type="reset" class="resetButton">Clear</button>		
 						</div>
 					</form>
 					<form id="noteForm">
 						<div>
-							<label for="noteTitle">Title</label>
-							<input id="noteTitle" required type="text">
+							<label for="noteTitle" >Title</label>
+							<input id="noteTitle" type="text" autocomplete="off" spellcheck="true">
 						</div>
 						<div>
 							<label for="noteDescription">Description</label>
-							<textarea id="noteDescription" required autocomplete="off" spellcheck="true"></textarea>
+							<textarea id="noteDescription" autocomplete="off" spellcheck="true"></textarea>
 						</div>
 						<div class="btns">
 							<button class="formButton" type="submit" form="noteForm">Add note</button>
@@ -119,15 +119,16 @@
 		</div>
 	</template>
 	<template>
-		<div class="detailsContent">
-			<div class="detailsLeft">
-				<p></p>
-				<p></p>
-			</div>
-			<div class="detailsRight">
-				<p></p>
-				<p></p>
-			</div>
+			<p><span>Title: </span></p>
+			<p><span>Due date: </span></p>
+			<p><span>Description: </span></p>
+			<p><span>Priority: </span></p>
+	</template>
+	<template>
+		<div class="noteClass">
+			<p></p>
+			<span class="note close">×</span>
+			<p></p>
 		</div>
 	</template>
 </html>
