@@ -11,19 +11,31 @@ class View {
     document.getElementById("LibContainer").append(clon);
   };
 
+  createNoteContent() {
+    let temp = document.getElementsByTagName("template")[2];
+    let clon = temp.content.cloneNode(true);
+    document.getElementById("NoteContainer").append(clon);
+  }
+
   getTarget(e) {
+    const parent = e.target.parentElement
     const grandParent = e.target.parentElement.parentElement;
     const collapsedDiv = e.target.parentElement.parentElement.nextSibling;
     const DetailBtn = e.target.parentElement.firstElementChild;
-    return {grandParent, collapsedDiv, DetailBtn};
+    return {parent, grandParent, collapsedDiv, DetailBtn};
   };
 
   removeToDoDiv(e) {
     this.getTarget(e).grandParent.remove();
   };
 
+  removeNoteDiv(e) {
+    this.getTarget(e).parent.remove();
+  }
+
   checkBox(e) {
     e.target.classList.toggle("checked");
+    e.target.nextElementSibling.classList.toggle("strikethrough");
   };
 
   clickDetails(e) {
@@ -31,12 +43,14 @@ class View {
   };
 
   dynamicDetails(e, array) {
-    e.target.classList.toggle("showingDetails");
+    e.target.classList.toggle("showingDetails"); //test
     if (e.target.classList.contains('showingDetails')) {
       const detailsContainer = this.detailsView.createDetailsDiv(this.getTarget(e).grandParent);
       this.detailsView.collapse(this.getTarget(e).collapsedDiv);
-      this.detailsView.createContent(detailsContainer);
-      this.detailsView.getInputs(this.getTarget(e).grandParent, array);
+      let content = this.detailsView.createContent(detailsContainer);
+      let inputs = this.detailsView.getInputs(this.getTarget(e).grandParent, array);
+      this.detailsView.setInputs(content,inputs)
+
     }
     else this.getTarget(e).collapsedDiv.remove();
   };
