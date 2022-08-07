@@ -1,8 +1,12 @@
+import {ToDoList} from './toDoList.js';
+import {noteList} from './noteList.js';
+
 class Model {
   constructor() {
     this.toDos = [
     // {id: 0, title: "Marathon", description: 'Run', dueDate: "2022-08-04", project: "Input", priority: "Low", completed: false},
     ]
+    this.notes = []
   };
 
   getFormElements() {
@@ -12,7 +16,9 @@ class Model {
     const project = document.querySelector("#project");
     const priority = document.querySelector("#priority");
     let completed = false;
-    return {title,description, dueDate, project, priority, completed}
+    const noteTitle = document.querySelector("#noteTitle");
+    const noteDescription = document.querySelector("#noteDescription");
+    return {title,description, dueDate, project, priority, completed, noteTitle, noteDescription}
   };
 
   generatesToDoItem(increment) {
@@ -45,40 +51,41 @@ class Model {
     // let toBeDeleted = this.toDos.findIndex(todo => todo.id == id); // this.toDos.splice(toBeDeleted, 1);
     };
 
-    clearForm() {
-      this.getFormElements().title.value = "";
-      this.getFormElements().description.value = "";
-      this.getFormElements().dueDate.value = "";
-      this.getFormElements().project.value = "Input";
-      this.getFormElements().priority.value = "Low";
-      document.getElementById("myModal").style.display = "none";
-    };
-};
-
-class ToDoList {
-  constructor(title, description, dueDate, project, priority, completed) {
-    this.title = title;
-    this.description = description;
-    this.dueDate = dueDate;
-    this.project = project;
-    this.priority = priority;
-    this.completed = completed;
+  clearForm() {
+    this.getFormElements().title.value = "";
+    this.getFormElements().description.value = "";
+    this.getFormElements().dueDate.value = "";
+    this.getFormElements().project.value = "Input";
+    this.getFormElements().priority.value = "Low";
+    this.getFormElements().noteTitle.value = "";
+    this.getFormElements().noteDescription.value = "";
+    document.getElementById("myModal").style.display = "none";
   };
 
-  assignFlag() {
-    const toDoTitle = document.getElementsByClassName("todo title");
-    toDoTitle[toDoTitle.length-1].textContent = this.title;
-    document.getElementsByClassName("todo date")[toDoTitle.length-1].textContent = this.dueDate; 
-    
-    switch(this.priority) {
-      case "High":
-        document.getElementsByClassName("flagColor")[toDoTitle.length-1].classList.add('redFlag');
-        break;
-      case "Medium":
-        document.getElementsByClassName("flagColor")[toDoTitle.length-1].classList.add('yellowFlag');
-        break;
-    };
+  generatesNote(increment) {
+    let noteItem = new noteList(this.getFormElements().noteTitle.value, this.getFormElements().noteDescription.value);
+    noteItem.id = increment;
+    this.notes.push(noteItem);
+    console.log(this.notes);
+    return noteItem
   };
+
+  noteCounter = (function(n) {
+    return function() {
+      n += 1;
+      return n;
+    }
+  }(-1)); 
+
+  addDivNoteID(increment) {
+    let stickyNote = document.getElementById('NoteContainer').lastElementChild;
+    stickyNote.id = increment;
+  };
+
+  removeNoteItem(e) {
+    let id = e.target.parentElement.id; 
+    this.notes = this.notes.filter(note => note.id != id);
+    };
 };
 
 export {Model}
