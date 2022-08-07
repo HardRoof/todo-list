@@ -38,6 +38,7 @@ li {
 
 li:hover {
   text-decoration: underline;
+  transform: translateY(-1px);
   transform: scale(1.05);
   opacity: 1;
   text-underline-offset: 2px;
@@ -150,6 +151,7 @@ body {
   color: var(--light-black-color);
   font-size: 22px;
   font-weight: bold;
+  user-select: none;
 }
 
 .close:hover, .close:focus,
@@ -279,7 +281,7 @@ form input, #mainForm select, form textarea {
   background-color: var(--lighter-gray-bg-color);
 } 
 
-.side-bar ul li {
+.menu {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -289,11 +291,17 @@ form input, #mainForm select, form textarea {
 
 .side-bar ul li:hover {
   text-decoration: none;
-  background-color: #fff;;
+  background-color: #fff;
 }
 
 .selected {
   font-weight: bold;
+  background-color: #fff;
+  box-shadow: rgb(0 0 0 / 6%) 0 2px 4px;
+}
+
+.menu:active {
+  transform: translateY(0);
 }
 
 #LibContainer {
@@ -399,7 +407,7 @@ svg {
   row-gap: 1rem;
 }
 
-.detailsContent p:nth-child(3){
+.detailsContent p:nth-child(3) {
   grid-row: 2/3;
 }
 
@@ -407,4 +415,38 @@ p > span {
   font-weight: 600;
 }
 
+#NoteContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+  grid-auto-rows: min-content;
+  gap: 2rem;
+  padding: 2rem;
+}
 
+.noteClass {
+  position: relative;
+  padding: 2rem;
+  background-color: var(--lighter-gray-bg-color);
+}
+
+.noteClass:hover {
+  transform: scale(1.004);
+  transform-origin: center;
+  box-shadow: 3px 3px 5px 2px rgb(0 0 0 / 20%);
+  transition: all .2s ease-out;
+}
+
+.noteClass p:first-child {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.noteClass p:last-child {
+  white-space: pre-line;
+}
+
+.note.close {
+  position: absolute;
+  right: 7px;
+  top: 0;
+}
