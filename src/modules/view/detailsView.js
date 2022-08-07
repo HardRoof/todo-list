@@ -5,48 +5,45 @@ class detailsView {
     const div = document.createElement('div');
     const p = document.createElement('p');
     return {div,p}
-  }
+  };
   
   static createDetailsDiv(grandParent) {
-    const detailsContainer = this.createElement().div
+    const detailsContainer = this.createElement().div;
     detailsContainer.classList.add('detailsContent');
     grandParent.insertAdjacentElement("afterend", detailsContainer);
 
     return detailsContainer
-  }
+  };
 
   static collapse(collapsedDiv) {
     collapsedDiv.style.maxHeight = collapsedDiv.scrollHeight + "rem";
-  }
-
-  static getInputs(grandParent, array) {
-    let increment = grandParent.id
-    console.log(array);
-
-    return {increment}
-  }
+  };
 
   static createContent(detailsContainer) {
-    const detailsLeft = this.createElement().div
-    detailsLeft.classList.add('detailsLeft');
-    detailsContainer.append(detailsLeft);
-    const title = this.createElement().p
-    detailsLeft.append(title);
-    title.textContent = `Title: `
-    const dueDate = this.createElement().p
-    detailsLeft.append(dueDate);
-    dueDate.textContent = `Due date: `
+    let temp = document.getElementsByTagName("template")[1];
+    let clon = temp.content.cloneNode(true);
+    let pNodeList = clon.querySelectorAll("p");
+    detailsContainer.append(clon);
+    let title = pNodeList[0];
+    let dueDate = pNodeList[1];
+    let description = pNodeList[2];
+    let priority = pNodeList[3];
 
-    const detailsRight = this.createElement().div
-    detailsRight.classList.add('detailsRight');
-    detailsContainer.append(detailsRight);
-    const description = this.createElement().p
-    detailsRight.append(description);
-    description.textContent = `Description: `
-    const priority = this.createElement().p
-    detailsRight.append(priority);
-    priority.textContent = `Priority: `
-  }
-}
+    return {title, dueDate, description, priority};
+  };
+
+  static getInputs(grandParent, array) {
+    let increment = grandParent.id;
+    return {increment, array};
+  };
+
+  static setInputs(content, inputs) {
+    let position = inputs.array.findIndex(todo => todo.id == inputs.increment);
+    content.title.append(`${inputs.array[position].title}`);
+    content.dueDate.append(`${inputs.array[position].dueDate}`);
+    content.description.append(`${inputs.array[position].description}`);
+    content.priority.append(`${inputs.array[position].priority}`);
+  };
+};
 
 export default detailsView
