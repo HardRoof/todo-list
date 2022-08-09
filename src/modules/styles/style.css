@@ -25,8 +25,15 @@ ul {
   display: flex;
   padding: 0;
   flex-direction: column;
-  gap: 1.8rem;
   margin: 0;
+}
+
+ul li:not(ul li:nth-child(3)) {
+  margin-bottom: 1.8rem;
+}
+
+ul li:nth-child(5){
+  margin-top: 1.8rem;
 }
 
 li {
@@ -277,7 +284,7 @@ form input, #mainForm select, form textarea {
 }
 
 .side-bar {
-  padding: 2rem 3rem;
+  padding: 2rem;
   background-color: var(--lighter-gray-bg-color);
 } 
 
@@ -449,4 +456,32 @@ p > span {
   position: absolute;
   right: 7px;
   top: 0;
+}
+
+.menu:nth-child(3)::after {
+  content: "";
+  height: 21px;
+  width: 21px;
+  margin-left: auto;
+  background: url(/src/images/chevron-down.svg) no-repeat;
+  transition: .3s ease;
+}
+
+.menu.rotated:nth-child(3)::after {
+  transform: rotateX(180deg);
+}
+
+.projectsDetails {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 2.5s ease-out;
+}
+
+.projectsDetails.projectsOn{
+  display: flex;
+  padding: 3px 1px;
+  margin-left: 2.4rem;
+  flex-direction: column;
+  align-items: flex-start;
 }
