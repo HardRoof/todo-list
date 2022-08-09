@@ -7,6 +7,7 @@ class Model {
     // {id: 0, title: "Marathon", description: 'Run', dueDate: "2022-08-04", project: "Input", priority: "Low", completed: false},
     ]
     this.notes = []
+    this.projects = {input: []}
   };
 
   getFormElements() {
@@ -25,6 +26,7 @@ class Model {
     let toDoItem = new ToDoList(this.getFormElements().title.value, this.getFormElements().description.value, this.getFormElements().dueDate.value, this.getFormElements().project.value, this.getFormElements().priority.value, this.getFormElements().completed);
     toDoItem.id = increment;
     this.toDos.push(toDoItem);
+    this.projects.input.push(toDoItem);
     return toDoItem
   };
 
@@ -86,6 +88,8 @@ class Model {
     let id = e.target.parentElement.id; 
     this.notes = this.notes.filter(note => note.id != id);
     };
+
+
 };
 
 export {Model}
