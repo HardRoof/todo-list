@@ -29,8 +29,10 @@
 						<li class="menu"><img src="./images/calendar.png" alt="Calender" title="Today"> <span>Today</span></li>
 						<li class="menu"><img src="./images/animation-outline.png" alt="Projects" title="Projects" height="24px"> <span>Projects</span></li>
 						<div class="projectsDetails">
-							<p>Inbox</p>
-							<button><span>+</span> New Project</button>
+							<section class="projectList">
+								<!-- <div class="projectItem">Inbox</div> -->
+							</section>
+							<button type="button" id="projectBtn"><span>+</span> New Project</button>
 						</div>
 						<li class="menu"><img src="./images/note-text-outline.png" alt="Notes" title="Notes" height="24px"> <span>Notes</span></li>
 					</ul>
@@ -48,8 +50,9 @@
 					</header>
 					<div class="modal-options">
 						<ul>
-							<li>Task</li>
-							<li>Note</li>
+							<li class="formsOptions selectedForm" >Task</li>
+							<li class="formsOptions">Project</li>
+							<li class="formsOptions">Note</li>
 						</ul>
 					</div>
 					<form action="" method="post" id="mainForm" class="formClass">
@@ -68,7 +71,7 @@
 						<div>
 							<label for="project">Project</label>
 							<select name="project" id="project" >
-								<option value="Input">Input</option>
+								<option value="Inbox">Inbox</option>
 							</select>
 						</div>
 						<div>
@@ -81,12 +84,11 @@
 						</div>
 							<div class="btns">
 							<button class="formButton" type="submit" form="mainForm">Add task</button>
-							<button type="reset" class="resetButton">Clear</button>		
 						</div>
 					</form>
 					<form id="noteForm">
 						<div>
-							<label for="noteTitle" >Title</label>
+							<label for="noteTitle">Title</label>
 							<input id="noteTitle" type="text" autocomplete="off" spellcheck="true">
 						</div>
 						<div>
@@ -95,7 +97,16 @@
 						</div>
 						<div class="btns">
 							<button class="formButton" type="submit" form="noteForm">Add note</button>
-							<button class="resetButton" type="reset">Clear</button></div>
+						</div>
+					</form>
+					<form id="projectForm">
+						<div>
+							<label for="projectTitle">Title</label>
+							<input id="projectTitle" type="text" autocomplete="off" spellcheck="true">
+						</div>
+						<div class="btns">
+							<button class="formButton" type="submit" form="projectForm">Add project</button>
+						</div>
 					</form>
 				</div>
 			</div>
