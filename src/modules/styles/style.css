@@ -43,12 +43,17 @@ li {
   user-select: none;
 }
 
-li:hover {
+li:hover, 
+.projectList div:hover {
   text-decoration: underline;
-  transform: translateY(-1px);
-  transform: scale(1.05);
+  transform: scale(1.035) translateY(-1px);
   opacity: 1;
   text-underline-offset: 2px;
+}
+
+li:active, 
+.projectList div:active {
+  transform: scale(1) translateY(0);
 }
 
 body {
@@ -192,7 +197,7 @@ input {
   gap: 5px;
 }
 
-#mainForm .btns, #noteForm .btns {
+#mainForm .btns, #noteForm .btns, #projectForm .btns {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-start;
@@ -262,13 +267,14 @@ form input, #mainForm select, form textarea {
   border-color: var(--red-color);
 }
 
-#noteForm, #noteForm > div:not(.btns) {
+#noteForm, #noteForm > div:not(.btns),
+#projectForm, #projectForm > div:not(.btns){
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-#noteForm {
+#noteForm, #projectForm {
   padding: 2rem;
   gap: 2rem;
   display: none;
@@ -438,7 +444,6 @@ p > span {
 
 .noteClass:hover {
   transform: scale(1.004);
-  transform-origin: center;
   box-shadow: 3px 3px 5px 2px rgb(0 0 0 / 20%);
   transition: all .2s ease-out;
 }
@@ -478,10 +483,34 @@ p > span {
   transition: max-height 2.5s ease-out;
 }
 
-.projectsDetails.projectsOn{
+.projectsDetails.projectsOn {
   display: flex;
   padding: 3px 1px;
-  margin-left: 2.4rem;
+  margin-left: 3rem;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.projectList {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: 5px 0;
+  width: 100%;
+}
+
+.projectList div {
+ cursor: pointer;
+ padding-left: 4px;
+ opacity: 0.95;
+ transition: all 0.15s;
+}
+
+.selectedForm {
+  font-weight: bold;
+  transform: scale(1.05);
+}
+
+.opaque {
+  opacity: 0.55;
 }
