@@ -8,6 +8,6 @@ class noteList {
     noteTitle[noteTitle.length-1].firstElementChild.textContent = this.noteTitle;
     noteTitle[noteTitle.length-1].lastElementChild.textContent = this.noteDescription;
   };
-}
+};
 
 export {noteList}
