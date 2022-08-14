@@ -13,6 +13,7 @@ class ToDoList {
     toDoTitle[toDoTitle.length-1].textContent = this.title;
     document.getElementsByClassName("todo date")[toDoTitle.length-1].textContent = this.dueDate; 
     toDoTitle[toDoTitle.length-1].parentElement.parentElement.setAttribute("data-project", this.project);
+    toDoTitle[toDoTitle.length-1].parentElement.parentElement.setAttribute("data-date", this.dueDate);
     
     switch(this.priority) {
       case "High":
