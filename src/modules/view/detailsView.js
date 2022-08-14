@@ -16,7 +16,8 @@ class detailsView {
   };
 
   static collapse(collapsedDiv) {
-    collapsedDiv.style.maxHeight = collapsedDiv.scrollHeight + "rem";
+    if (collapsedDiv.style.maxHeight) collapsedDiv.style.maxHeight = null;
+    else collapsedDiv.style.maxHeight = collapsedDiv.scrollHeight + "rem";
   };
 
   static createContent(detailsContainer) {
