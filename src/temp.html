@@ -25,24 +25,21 @@
 			<main>
 				<nav class="side-bar">
 					<ul>
-						<li class="menu selected"><img src="./images/inbox.png" alt="Inbox" title="Inbox" height="24px"><span>Inbox</span></li>
-						<li class="menu"><img src="./images/calendar.png" alt="Calender" title="Today"> <span>Today</span></li>
-						<li class="menu"><img src="./images/animation-outline.png" alt="Projects" title="Projects" height="24px"> <span>Projects</span></li>
+						<li class="menu selected"><img src="./images/inbox.svg" alt="Inbox" title="Inbox" height="24px"><span>Inbox</span></li>
+						<li class="menu"><img src="./images/calendar.svg" alt="Calender" title="Today"> <span>Today</span></li>
+						<li class="menu"><img src="./images/animation-outline.svg" alt="Projects" title="Projects" height="24px"> <span>Projects</span></li>
 						<div class="projectsDetails">
 							<section class="projectList">
-								<!-- <div class="projectItem">Inbox</div> -->
 							</section>
 							<button type="button" id="projectBtn"><span>+</span> New Project</button>
 						</div>
-						<li class="menu"><img src="./images/note-text-outline.png" alt="Notes" title="Notes" height="24px"> <span>Notes</span></li>
+						<li class="menu"><img src="./images/note-text-outline.svg" alt="Notes" title="Notes" height="24px"> <span>Notes</span></li>
 					</ul>
 			</nav>
 			<section id="LibContainer"></section>
 			<section id="NoteContainer" style="display: none;"></section>
 			</main>
-						<!-- The Modal -->
 			<div id="myModal" class="modal">
-				<!-- Modal content -->
 				<div class="modal-content">
 					<header class="modal-header">
 						<p>Create a new...</p>
@@ -57,25 +54,25 @@
 					</div>
 					<form action="" method="post" id="mainForm" class="formClass">
 						<div>
-							<label for="title">Title</label>
-							<input type="text" id="title" >
+							<label for="title">Title<abbr title="Required" aria-label="required">*</label>
+							<input type="text" id="title" required>
 						</div>
 						<div>
-							<label for="description">Description</label>
-							<textarea id="description" autocomplete="off" spellcheck="true" ></textarea>
+							<label for="description">Description<abbr title="Required" aria-label="required">*</label>
+							<textarea id="description" autocomplete="off" spellcheck="true" required></textarea>
 						</div>
 						<div>
-							<label for="dueDate">Due Date</label>
-							<input type="date" id="dueDate" >
+							<label for="dueDate">Due Date<abbr title="Required" aria-label="required">*</label>
+							<input type="date" id="dueDate" required>
 						</div>
 						<div>
-							<label for="project">Project</label>
-							<select name="project" id="project" >
+							<label for="project">Project<abbr title="Required" aria-label="required">*</label>
+							<select name="project" id="project" required>
 								<option value="Inbox">Inbox</option>
 							</select>
 						</div>
 						<div>
-							<label for="priority">Priority</label>
+							<label for="priority">Priority<abbr title="Required" aria-label="required">*</label>
 							<select name="priority" id="priority" required>
 								<option value="Low">Low</option>
 								<option value="Medium">Medium</option>
@@ -88,8 +85,8 @@
 					</form>
 					<form id="noteForm">
 						<div>
-							<label for="noteTitle">Title</label>
-							<input id="noteTitle" type="text" autocomplete="off" spellcheck="true">
+							<label for="noteTitle">Title<abbr title="Required" aria-label="required">*</label>
+							<input id="noteTitle" type="text" autocomplete="off" spellcheck="true" required>
 						</div>
 						<div>
 							<label for="noteDescription">Description</label>
@@ -101,8 +98,8 @@
 					</form>
 					<form id="projectForm">
 						<div>
-							<label for="projectTitle">Title</label>
-							<input id="projectTitle" type="text" autocomplete="off" spellcheck="true">
+							<label for="projectTitle">Title<abbr title="Required" aria-label="required">*</label>
+							<input id="projectTitle" type="text" autocomplete="off" spellcheck="true" required>
 						</div>
 						<div class="btns">
 							<button class="formButton" type="submit" form="projectForm">Add project</button>
