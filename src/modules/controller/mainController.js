@@ -6,17 +6,17 @@ class Controller {
     document.getElementsByClassName("close")[0].addEventListener('click', this.closeModalBox);
     window.addEventListener("click", (e) => this.closeModalOutside(e));
     document.getElementsByTagName("li")[0].addEventListener("click", (e) => this.showLibContainer(e));
-    document.getElementsByTagName("li")[1].addEventListener("click", () => this.view.showToday());
+    document.getElementsByTagName("li")[1].addEventListener("click", () => this.filterToday());
     document.getElementsByTagName("li")[2].addEventListener("click", () => this.showProjects());
     document.getElementsByTagName("li")[3].addEventListener("click", this.showNoteContainer);
-    document.getElementsByTagName("li")[4].addEventListener("click", () => this.showMainForm()); //inside showMainForm() this = Controller
+    document.getElementsByTagName("li")[4].addEventListener("click", () => this.showMainForm());
     document.getElementsByTagName("li")[5].addEventListener("click", () => this.showProjectForm());
     document.getElementsByTagName("li")[6].addEventListener("click", () => this.showNoteForm());
     document.getElementById('projectBtn').addEventListener("click", () => this.projectBtn());
-    document.getElementById('mainForm').addEventListener("submit", (e) => this.formAction(e));
+    document.getElementById('mainForm').addEventListener("submit", (e) => this.toDoFormAction(e));
     document.getElementById('noteForm').addEventListener("submit", (e) => this.noteFormAction(e));
     document.getElementById('projectForm').addEventListener("submit", (e) => this.projectFormAction(e));
-    document.getElementById('LibContainer').addEventListener("click", (e) => this.listActions(e));
+    document.getElementById('LibContainer').addEventListener("click", (e) => this.toDoActions(e));
     document.getElementById('NoteContainer').addEventListener('click', (e) => this.deleteNote(e));
     document.getElementsByClassName("projectList")[0].addEventListener('click', (e) => this.deleteProject(e));
     document.querySelectorAll(".menu").forEach((option) => {
@@ -27,15 +27,20 @@ class Controller {
     });
     document.querySelector(".projectList").addEventListener('click', (e) => this.selectProject(e));
     document.getElementById('searchID').addEventListener('keyup', (e) => this.filterItems(e));
+    document.getElementsByClassName("logo")[0].addEventListener('click', this.reloadPage);
+    document.querySelector('#userPic').addEventListener('click', this.reloadPage);
+    window.addEventListener("load", () => this.loadStorage());
   };
 
+  // ************************************************** //
   getElements() {
     const project = document.getElementsByTagName("li")[2];
     const projectDetails = document.getElementsByClassName("projectsDetails")[0];
     const selectBox = document.getElementById('project');
     const filter = document.getElementById('searchID');
+    const clickedDetails = document.querySelectorAll(".showingDetails")
 
-    return {project, projectDetails, selectBox, filter}
+    return {project, projectDetails, selectBox, filter, clickedDetails}
   };
 
   getForms() {
@@ -45,6 +50,7 @@ class Controller {
     return {form,formNote, formProject}
   };
 
+  // ************************************************** //
   openModalBox() {
     document.getElementById("myModal").style.display = "block";
   };
@@ -57,6 +63,7 @@ class Controller {
     if (e.target == document.getElementById("myModal")) this.closeModalBox();
   };
 
+  // ************************************************** //
   showLibContainer(e) {
     this.switchContainers()
     if (!e.currentTarget.classList.contains('selected')) e.currentTarget.classList.toggle("selected");
@@ -64,11 +71,6 @@ class Controller {
     document.querySelectorAll(".todo.shell").forEach(item => {
       item.style.display = "flex";
     });
-  };
-
-  switchContainers() {
-    document.getElementById("NoteContainer").style.display = "none";
-    document.getElementById("LibContainer").style.display = "block";
   };
 
   showProjects() {
@@ -84,7 +86,7 @@ class Controller {
     document.getElementsByTagName("li")[6].click();
   };
 
-
+// ************************************************** //
   showMainForm() {
     this.getForms().form.style.display = "grid";
     this.getForms().formNote.style.display = "none";
@@ -103,42 +105,73 @@ class Controller {
     this.getForms().formProject.style.display = "flex";
   };
 
+  // ************************************************** //
+  switchContainers() {
+    document.getElementById("NoteContainer").style.display = "none";
+    document.getElementById("LibContainer").style.display = "block";
+  };
+  
   projectBtn() {
     this.openModalBox();
     document.getElementsByTagName("li")[5].click();
   };
 
-  formAction(e) {
+  filterToday() {
+    this.switchContainers();
+    this.closeDetails();
+    this.view.showToday();
+  };
+
+  // ************************************************** //
+  toDoFormAction(e) {
     e.preventDefault();
+    this.createDisplayTodoItem(this.model.getFormElements().title.value, this.model.getFormElements().description.value, this.model.getFormElements().dueDate.value, this.model.getFormElements().project.value, this.model.getFormElements().priority.value, this.model.getFormElements().completed);
+    this.model.clearForm();
+  };
+
+  createDisplayTodoItem(title, description, project, priority, completed) {
     this.view.showContent();
     let increment = this.model.counter();
-    let toDoItem = this.model.generatesToDoItem(increment);
+    let toDoItem = this.model.generatesToDoItem(increment, title, description, project, priority, completed);
     this.model.storeItem(toDoItem);
     toDoItem.fillToDo();
     this.model.addDivID(increment);
-    this.model.clearForm();
+    this.model.toDosUpdateLocalStorage();
+    this.model.projectsUpdateLocalStorage();
   };
 
   noteFormAction(e) {
     e.preventDefault();
-    this.view.createNoteContent();
-    let increment = this.model.noteCounter();
-    let noteItem = this.model.generatesNote(increment);
-    noteItem.fillNote();
-    this.model.addDivNoteID(increment);
+    this.createDisplayNote(this.model.getFormElements().noteTitle.value, this.model.getFormElements().noteDescription.value);
+    this.model.notesUpdateLocalStorage();
     this.model.clearForm();
   };
+
+  createDisplayNote(noteTitle, noteDescription) {
+    this.view.createNoteContent();
+    let increment = this.model.noteCounter();
+    let noteItem = this.model.generatesNote(increment, noteTitle, noteDescription);
+    noteItem.fillNote();
+    this.model.addDivNoteID(increment);
+  }
 
   projectFormAction(e) {
     e.preventDefault();
-    let projectTitle = this.model.generatesProject();
-    this.model.fillOptions(projectTitle, this.getElements().selectBox);
-    this.view.displayProjects(projectTitle);
+    document.getElementsByTagName("li")[4].click();
+    const projectTitle = this.model.generatesProject().projectTitle
+    this.createDisplayProject(projectTitle);
     this.model.clearForm();
   };
 
-  listActions(e) {
-    console.log(this.model);
+  createDisplayProject(projectTitle) {
+    this.model.fillOptions(projectTitle, this.getElements().selectBox);
+    this.view.displayProjects(projectTitle);
+    this.model.storeProject(projectTitle);
+    this.model.projectsUpdateLocalStorage();
+  };
+
+  // ************************************************** //
+  toDoActions(e) {
     if (e.target.classList.contains('unchecked')) {
       this.view.checkBox(e);
       this.model.toDoStatus(this.view.getTarget(e).grandParent.id);
@@ -147,6 +180,8 @@ class Controller {
       this.view.clickDetails(e);
       this.view.removeToDoDiv(e);
       this.model.removeToDoItem(e);
+      this.model.toDosUpdateLocalStorage();
+      this.model.projectsUpdateLocalStorage();
     };
     if (e.target.classList.contains('details')) this.view.dynamicDetails(e, this.model.toDos);
   };
@@ -155,6 +190,7 @@ class Controller {
     if (e.target.classList.contains('close')) {
       this.view.removeNoteDiv(e);
       this.model.removeNoteItem(e);
+      this.model.notesUpdateLocalStorage();
     };
   };
 
@@ -164,9 +200,12 @@ class Controller {
       this.view.removeNoteDiv(e);
       this.model.removeOptions(this.getElements().selectBox, deletedProject);
       this.model.removeProjectItem(deletedProject);
+      this.model.projectsUpdateLocalStorage();
+      this.model.toDosUpdateLocalStorage();
     };
   };
 
+  // ************************************************** //
   selectMenu(e) {
     this.deselect(document.querySelectorAll(".menu"), "selected");
     this.deselect(document.querySelectorAll(".projectItem"), "selectedForm");
@@ -184,6 +223,7 @@ class Controller {
       this.deselect(document.querySelectorAll(".menu"), "selected");
       document.getElementsByTagName("li")[2].classList.add("selected");
       this.selectForm(document.querySelectorAll(".projectItem"), e);
+      this.closeDetails();
       document.querySelectorAll(".todo.shell").forEach(item => {
         item.style.display = "flex";
         if (e.target.textContent == item.dataset.project) item.style.display = "flex";
@@ -198,6 +238,7 @@ class Controller {
     });
   };
 
+  // ************************************************** //
   filterItems(e) {
     let text = e.target.value.toLowerCase();
     let items = document.querySelectorAll(".todo.shell");
@@ -207,6 +248,52 @@ class Controller {
       else item.style.display = "none";
     });
   };
+
+  closeDetails() {
+    this.getElements().clickedDetails.forEach(element => {
+      element.click();
+    });
+  };
+
+  reloadPage() {
+    window.location.reload();
+    window.scrollTo(0, 0);  //To refresh at top of Page
+  };
+
+  // ************************************************** //
+  loadStorage() {
+    this.loadProjects();
+    this.loadToDos();
+    this.loadNotes();
+  };
+
+  loadProjects() {
+    if (localStorage.getItem('projects')) {
+      const localStorageProjects = JSON.parse(localStorage.getItem('projects'));
+      Object.keys(localStorageProjects).forEach((project) => {
+        if(project != "Inbox") this.createDisplayProject(project);
+      });
+    };
+  };
+
+  loadToDos() {
+    if (localStorage.getItem('toDos')) {
+      const localStorageToDos = JSON.parse(localStorage.getItem('toDos'));
+      localStorageToDos.forEach((toDo) => {
+        this.createDisplayTodoItem(toDo.title, toDo.description, toDo.dueDate, toDo.project, toDo.priority, toDo.completed);
+      });
+    };
+  };
+
+  loadNotes() {
+    if (localStorage.getItem('notes')) {
+      const localStorageNotes = JSON.parse(localStorage.getItem('notes'));
+      localStorageNotes.forEach((note) => {
+        this.createDisplayNote(note.noteTitle, note.noteDescription);
+      });
+    };
+  };
+
 };
 
 export {Controller}

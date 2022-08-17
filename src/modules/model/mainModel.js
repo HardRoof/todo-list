@@ -5,9 +5,7 @@ import {format, parseISO} from "date-fns";
 
 class Model {
   constructor() {
-    this.toDos = [
-    // {id: 0, title: "Marathon", description: 'Run', dueDate: "2022-08-04", project: "Inbox", priority: "Low", completed: false},
-    ];
+    this.toDos = [];
     this.notes = [];
     this.projects = {Inbox: []};
   };
@@ -25,13 +23,15 @@ class Model {
     return {title,description, dueDate, project, priority, completed, noteTitle, noteDescription, projectTitle}
   };
 
-  formatDate() {
-    const formattedData = format(parseISO(this.getFormElements().dueDate.value), 'MMM do');  // parse ISO string before formatting it
+  formatDate(dueDate) {
+    if (dueDate.length > 8) {
+    const formattedData = format(parseISO(dueDate), 'MMM do');  // parse ISO string before formatting it
     return formattedData
-  }
+    } else return dueDate
+  };
 
-  generatesToDoItem(increment) {
-    let toDoItem = new ToDoList(this.getFormElements().title.value, this.getFormElements().description.value, this.formatDate(), this.getFormElements().project.value, this.getFormElements().priority.value, this.getFormElements().completed);
+  generatesToDoItem(increment, title, description, dueDate, project, priority, completed) {
+    let toDoItem = new ToDoList(title, description, this.formatDate(dueDate), project, priority, completed);
     toDoItem.id = increment;
     return toDoItem
   };
@@ -60,7 +60,7 @@ class Model {
   };
 
   removeToDoItem(e) {
-    let item = e.target.parentElement.parentElement
+    let item = e.target.parentElement.parentElement;
     let id = item.id; 
     this.toDos = this.toDos.filter(todo => todo.id != id);
     // Or toBeDeleted = this.toDos.findIndex(todo => todo.id == id); // this.toDos.splice(toBeDeleted, 1);
@@ -80,8 +80,8 @@ class Model {
     document.getElementById("myModal").style.display = "none";
   };
 
-  generatesNote(increment) {
-    let noteItem = new noteList(this.getFormElements().noteTitle.value, this.getFormElements().noteDescription.value);
+  generatesNote(increment, noteTitle, noteDescription) {
+    let noteItem = new noteList(noteTitle, noteDescription);
     noteItem.id = increment;
     this.notes.push(noteItem);
     return noteItem
@@ -106,14 +106,17 @@ class Model {
 
   generatesProject() {
     let projectName = new projectList(this.getFormElements().projectTitle.value);
-    this.projects[projectName.projectTitle] = [];
-    return projectName.projectTitle
+    return projectName
+  };
+
+  storeProject(projectTitle) {
+    this.projects[projectTitle] = [];
   };
 
   fillOptions(projectTitle, selectBox) {
     let newOption = new Option(projectTitle, projectTitle);
     selectBox.add(newOption,undefined);
-  }
+  };
 
   removeOptions(selectBox, deletedProject) {
     const options = selectBox.getElementsByTagName('OPTION');
@@ -123,7 +126,22 @@ class Model {
     };
 
   removeProjectItem(deletedProject) {
+    let items = document.querySelectorAll(".todo.shell");
+    items.forEach(function(item) {
+      if(item.dataset.project == deletedProject) item.lastElementChild.lastElementChild.click();
+    });
     delete this.projects[deletedProject];
+  };
+
+  toDosUpdateLocalStorage() { 
+    window.localStorage.setItem('toDos', JSON.stringify(this.toDos));
+  };
+
+  notesUpdateLocalStorage() {
+    window.localStorage.setItem('notes', JSON.stringify(this.notes));
+  };
+  projectsUpdateLocalStorage() {
+    window.localStorage.setItem('projects', JSON.stringify(this.projects));
   };
 };
 
