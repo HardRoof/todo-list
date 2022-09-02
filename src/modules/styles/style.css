@@ -8,15 +8,15 @@
   --gray-bg-color: #eee;
   --lighter-gray-bg-color: #f7f7f7;
 
-
   --shadow: 1px 2px 4px rgb(0 0 0 / 51%);
 }
 
-* :not(.modal-content){
+* :not(.modal-content) {
   box-sizing: border-box;
 }
 
-p, h1 {
+p,
+h1 {
   margin: 0;
 }
 
@@ -32,7 +32,7 @@ ul li:not(ul li:nth-child(3)) {
   margin-bottom: 1.8rem;
 }
 
-ul li:nth-child(5){
+ul li:nth-child(5) {
   margin-top: 1.8rem;
 }
 
@@ -53,10 +53,11 @@ li:hover,
 
 li:active {
   transform: scale(1) translateY(0);
-} 
+}
 
 body {
-  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1.6rem; /* To turn 1rem into 10px */
 }
 
@@ -80,14 +81,15 @@ body {
   display: flex;
 }
 
-.top img, [type="image"] {
-  width: min(5vmin,40px);
+.top img,
+[type="image"] {
+  width: min(5vmin, 40px);
   cursor: pointer;
   transition: all 200ms;
 }
 
 .left .logo {
-  width: min(7vmin,55px);
+  width: min(7vmin, 55px);
 }
 
 .left div:last-child {
@@ -113,7 +115,7 @@ body {
 }
 
 #searchID::placeholder {
-  opacity: .9;
+  opacity: 0.9;
   color: rgb(255, 255, 255);
 }
 
@@ -131,9 +133,9 @@ body {
   left: 0;
   top: 0;
   width: 100%; /* Full width */
-  min-height: 100vh;; /* Same height as container */
+  min-height: 100vh; /* Same height as container */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,0.48); /* Black w/ opacity */
+  background-color: rgba(0, 0, 0, 0.48); /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
@@ -165,27 +167,30 @@ body {
   user-select: none;
 }
 
-.close:hover, .close:focus,
-[type="image"]:hover,[type="image"]:focus,
-.trashBinSvg:hover, .trashBinSvg:focus {
+.close:hover,
+.close:focus,
+[type="image"]:hover,
+[type="image"]:focus,
+.trashBinSvg:hover,
+.trashBinSvg:focus {
   color: black;
   cursor: pointer;
   transform: scale(1.15);
 }
 
-.close:active, 
+.close:active,
 [type="image"]:active,
 .trashBinSvg:active {
   transform: scale(1);
 }
 
 input {
-  box-sizing: border-box
+  box-sizing: border-box;
 }
 
 #mainForm {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(22rem,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
   gap: 2rem 1.5rem;
   padding: 2rem;
 }
@@ -196,7 +201,9 @@ input {
   gap: 5px;
 }
 
-#mainForm .btns, #noteForm .btns, #projectForm .btns {
+#mainForm .btns,
+#noteForm .btns,
+#projectForm .btns {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-start;
@@ -208,20 +215,25 @@ input {
   grid-area: 2/1/5/2;
 }
 
-#description, #noteDescription {
+#description,
+#noteDescription {
   resize: vertical;
   min-height: 70px;
   height: 100%;
   max-height: 22rem;
 }
 
-input:focus:not(.right input), select:focus, textarea:focus {
+input:focus:not(.right input),
+select:focus,
+textarea:focus {
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
 }
 
-form input, #mainForm select, form textarea {
+form input,
+#mainForm select,
+form textarea {
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
   font-weight: 400;
@@ -266,14 +278,17 @@ form input, #mainForm select, form textarea {
   border-color: var(--red-color);
 }
 
-#noteForm, #noteForm > div:not(.btns),
-#projectForm, #projectForm > div:not(.btns){
+#noteForm,
+#noteForm > div:not(.btns),
+#projectForm,
+#projectForm > div:not(.btns) {
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-#noteForm, #projectForm {
+#noteForm,
+#projectForm {
   padding: 2rem;
   gap: 2rem;
   display: none;
@@ -291,7 +306,7 @@ form input, #mainForm select, form textarea {
 .side-bar {
   padding: 2rem;
   background-color: var(--lighter-gray-bg-color);
-} 
+}
 
 .menu {
   display: flex;
@@ -361,7 +376,7 @@ form input, #mainForm select, form textarea {
   justify-content: center;
   font-family: sans-serif;
   font-size: 13px;
-  color: #4d4d4e;;
+  color: #4d4d4e;
 }
 
 svg {
@@ -369,16 +384,16 @@ svg {
   width: 16px;
 }
 
-.flagColor{
+.flagColor {
   fill: rgb(64, 115, 214);
 }
 
-.flagColor.yellowFlag{
-  fill: #FAD02C;
+.flagColor.yellowFlag {
+  fill: #fad02c;
 }
 
-.flagColor.redFlag{
-  fill: #E32227;
+.flagColor.redFlag {
+  fill: #e32227;
 }
 
 .trashBinSvg {
@@ -395,8 +410,8 @@ svg {
   font-weight: 700;
   cursor: pointer;
   box-shadow: 1px 2px 2px rgb(0 0 0 / 50%);
-  -webkit-transition: all .2s;
-  transition: all .2s;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
 .todo.details:hover {
@@ -409,10 +424,10 @@ svg {
   transform: scale(1);
 }
 
-.todo.details.showingDetails{
+.todo.details.showingDetails {
   color: rgb(255, 255, 255);
   background-color: var(--green-color);
-  box-shadow: none
+  box-shadow: none;
 }
 
 .detailsContent {
@@ -450,7 +465,7 @@ p > span {
 .noteClass:hover {
   transform: scale(1.002);
   box-shadow: 3px 3px 5px 2px rgb(0 0 0 / 20%);
-  transition: all .2s ease-out;
+  transition: all 0.2s ease-out;
 }
 
 .noteClass p:first-child {
@@ -474,7 +489,7 @@ p > span {
   width: 21px;
   margin-left: auto;
   background: url(/src/images/chevron-down.svg) no-repeat;
-  transition: .3s ease;
+  transition: 0.3s ease;
 }
 
 .menu.rotated:nth-child(3)::after {
@@ -519,12 +534,12 @@ p > span {
 }
 
 .projectItem::before {
-  background-image: url('/src/images/bullet.svg');
+  background-image: url("/src/images/bullet.svg");
   background-size: 1rem 1rem;
   display: inline-block;
-  width: 1rem; 
+  width: 1rem;
   height: 1rem;
-  content:"";
+  content: "";
   margin-right: 5px;
 }
 
@@ -551,7 +566,7 @@ p > span {
 }
 
 #projectBtn:hover {
-  color: var(--green-color)
+  color: var(--green-color);
 }
 
 #projectBtn span {
@@ -575,4 +590,8 @@ p > span {
   height: 21px;
   width: 21px;
   background: url(/src/images/close-box-outline.svg) no-repeat;
+}
+
+form > input:nth-child(1) {
+  text-transform: capitalize;
 }
