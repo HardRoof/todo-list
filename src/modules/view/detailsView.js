@@ -40,10 +40,10 @@ class detailsView {
 
   static setInputs(content, inputs) {
     let position = inputs.array.findIndex((todo) => todo.id == inputs.increment);
-    content.title.append(`${inputs.array[position].title}`);
-    content.dueDate.append(`${inputs.array[position].dueDate}`);
-    content.description.append(`${inputs.array[position].description}`);
-    content.priority.append(`${inputs.array[position].priority}`);
+    content.title.append(` ${inputs.array[position].title}`);
+    content.dueDate.append(` ${inputs.array[position].dueDate}`);
+    content.description.append(` ${inputs.array[position].description}`);
+    content.priority.append(` ${inputs.array[position].priority}`);
   }
 }
 
