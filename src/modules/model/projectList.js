@@ -1,4 +1,4 @@
-class projectList {
+class ProjectList {
   constructor(projectTitle) {
     this.projectTitle = this.capitalize(projectTitle);
   }
@@ -7,4 +7,4 @@ class projectList {
   }
 }
 
-export { projectList };
+export { ProjectList };

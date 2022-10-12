@@ -1,4 +1,4 @@
-class noteList {
+class NoteList {
   constructor(noteTitle, noteDescription) {
     this.noteTitle = noteTitle;
     this.noteDescription = noteDescription;
@@ -10,4 +10,4 @@ class noteList {
   }
 }
 
-export { noteList };
+export { NoteList };

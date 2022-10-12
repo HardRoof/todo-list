@@ -1,4 +1,4 @@
-class detailsView {
+class DetailsView {
   constructor() {}
 
   static createElement() {
@@ -47,4 +47,4 @@ class detailsView {
   }
 }
 
-export default detailsView;
+export default DetailsView;
